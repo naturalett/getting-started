@@ -10,14 +10,33 @@ https://learn.hashicorp.com/tutorials/terraform/install-cli
 https://registry.terraform.io/providers/kreuzwerker/docker/latest/docs/resources/image
 ```
 
-### Here we've an example of a docker_image resource
+### An example of a docker_image resource
 
-1. Clone the repository
-2. Run:
-    2.1 Terraform init
-    2.2 Terraform plan
-    2.3 Terraform apply
-        2.3.1 Check the result: docker image ls | grep ubuntu
-    2.4 Terraform destroy
+1. Clone the repo
+   ```sh
+   git clone git@github.com:naturalett/getting-started.git
+   ```
+3. Initialize a working directory for Terraform configuration files
+   ```sh
+   terraform init
+   ```
+4. Evaluates a Terraform configuration to determine the desired state of all the resources it declares
+   ```sh
+   terraform plan
+   ```
+5. Makes any infrastructure changes defined in your configuration
+   ```sh
+   terraform apply
+   ```
+6. Destroy all your created infrastructure in your configuration
+   ```sh
+   terraform destroy
+   ```
 
+<!-- USAGE EXAMPLES -->
+## Usage
 
+- [x] Check the created image
+   ```sh
+   docker image ls | grep ubuntu
+   ```
