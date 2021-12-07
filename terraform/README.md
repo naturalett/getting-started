@@ -2,8 +2,8 @@
 <details>
   <summary>Table of Contents</summary>
   <ol>
-    <li><a href="#Install-Terraform">Install Terraform</a></li>
-    <li><a href="#roadmap">Google an example</a></li>
+    <li><a href="#install-terraform">Install Terraform</a></li>
+    <li><a href="#google-an-example">Google an example</a></li>
     <li>
       <a href="#getting-started">Getting Started</a>
       <ul>
@@ -27,7 +27,7 @@
 ```BASH
 https://learn.hashicorp.com/tutorials/terraform/install-cli
 ```
-
+<br />
 
 <!-- Google an example -->
 ## Google an example
@@ -37,7 +37,7 @@ https://learn.hashicorp.com/tutorials/terraform/install-cli
 ```BASH
 https://registry.terraform.io/providers/kreuzwerker/docker/latest/docs/resources/image
 ```
-
+<br />
 
 <!-- GETTING STARTED -->
 ## Getting Started
@@ -64,6 +64,7 @@ https://registry.terraform.io/providers/kreuzwerker/docker/latest/docs/resources
    ```sh
    terraform destroy
    ```
+<br />
 
 <!-- USAGE EXAMPLES -->
 ## Usage
