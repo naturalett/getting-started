@@ -4,7 +4,7 @@ resource "kubernetes_config_map" "index_html" {
     namespace = kubernetes_namespace.namespaces[var.env_name].metadata[0].name
   }
   data = {
-    "index.html" = file("${path.module}/../resources/index.html")
+    "index.html" = file("${path.module}/../../resources/index.html")
   }
 }
 
