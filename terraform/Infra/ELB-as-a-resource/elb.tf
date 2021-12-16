@@ -11,16 +11,16 @@ resource "random_string" "random" {
 # https://github.com/terraform-aws-modules/terraform-aws-elb/blob/master/modules/elb/main.tf
 resource "aws_elb" "opsworks" {
   name               = "ElasticLB-${random_string.random.result}"
-  subnets = ["subnet-12345678", "subnet-87654321"]
+  subnets = ["subnet-5c892126", "subnet-4ca5c925"]
 
-  access_logs {
-    bucket        = "opsworks"
-    bucket_prefix = "docs"
-    interval      = 60
-  }
+  # access_logs {
+  #   bucket        = "opsworks"
+  #   bucket_prefix = "docs"
+  #   interval      = 60
+  # }
 
   listener {
-    instance_port     = 8000
+    instance_port     = 80
     instance_protocol = "http"
     lb_port           = 80
     lb_protocol       = "http"
@@ -38,7 +38,7 @@ resource "aws_elb" "opsworks" {
     healthy_threshold   = 3
     unhealthy_threshold = 2
     timeout             = 3
-    target              = "HTTP:8000/index.php"
+    target              = var.target_elb_healthcheck
     interval            = 10
   }
 
