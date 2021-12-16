@@ -3,5 +3,5 @@ variable "region" {
 }
 
 variable "target_elb_healthcheck" {
-  default = "HTTP:8000/index.php"
+  default = "HTTP:80/index.php"
 }
