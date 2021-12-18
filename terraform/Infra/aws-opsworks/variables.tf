@@ -1,10 +1,5 @@
-variable "instance_type" {
-  description = "Instance type for the node group"
-  default     = "t2.medium"
-}
-
 variable "region" {
-  default = "us-east-1"
+  default = "eu-west-2"
 }
 
 variable "stack_id" {
