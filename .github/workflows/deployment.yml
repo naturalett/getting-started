@@ -12,4 +12,5 @@ jobs:
       name: production
       url: https://github.com
     steps:
+      - uses: actions/checkout@v1
       - name: deploy
