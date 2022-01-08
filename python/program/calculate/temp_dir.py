@@ -6,6 +6,7 @@ class TestExample(unittest.TestCase):
     def setUp(self):
         # Create a temporary directory
         self.test_dir = tempfile.mkdtemp()
+        print(f"The directory is here: {self.test_dir}")
 
     def tearDown(self):
         # Remove the directory after the test
@@ -14,6 +15,7 @@ class TestExample(unittest.TestCase):
     def test_something(self):
         # Create a file in the temporary directory
         f = open(path.join(self.test_dir, 'test.txt'), 'w')
+        print(f"The path is: {f}")
         # Write something to it
         f.write('The owls are not what they seem')
         # Reopen the file and check if what we read back is the same

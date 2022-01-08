@@ -1,4 +1,4 @@
-class App(object):
+class App:
     def __init__(self, param='some_value'):
         pass
 

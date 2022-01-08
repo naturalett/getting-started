@@ -39,7 +39,7 @@ print(heading)
 section_heading = soup.find(name="h3", class_="heading")
 # print(section_heading.getText())
 # print(section_heading.name)
-# print(section_heading.get("class"))
+# print(section_heading.get("human"))
 
 #You can also find by using a CSS Selector:
 print(soup.select_one(selector=".company a"))

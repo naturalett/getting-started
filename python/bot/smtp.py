@@ -2,13 +2,13 @@ import smtplib
 import renderer
 
 YOUR_SMTP_ADDRESS = "smtp.gmail.com"
-YOUR_EMAIL = "example.com"
+YOUR_EMAIL = "eks.com"
 YOUR_PASSWORD = "12345678"
 
 
 class Smtp:
     def __init__(self):
-        self.buy_price = 200
+        self.buy_price = 70
 
     def calculate_condition(self):
         render_a_page = renderer.Renderer()

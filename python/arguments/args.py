@@ -1,18 +1,21 @@
-#!/usr/bin/env python
 import argparse
 
 
-def main():
-    parser = argparse.ArgumentParser(
-        description='Generate an AWS S3 pre-signed URL to access an S3 object without logging in')
-    parser.add_argument('file', help='File Name')
-    parser.add_argument('number', help='Number')
-    parser.add_argument('expiration', nargs='?', default=3600, help='Expiration of URL in seconds')
-    args = parser.parse_args()
+def launch_instance(region, instanceType):
+    print(f"region is: {region}, instance is: {instanceType}")
 
-    print(f"File is : {args.file}")
-    print(f"Number is : {args.number}")
-    print(f"Expiration is : {args.expiration}")
+
+def main():
+    # var = input("please enter: ")
+    parser = argparse.ArgumentParser(
+        description='Generate a file number')
+    parser.add_argument('region', help='region please type')
+    parser.add_argument('instanceType', help='instance type')
+    parser.add_argument('expiration', nargs='?', default=3600, help='Expiration in seconds')
+    args = parser.parse_args()
+    # print(type(args))
+
+    launch_instance(args.region, args.instanceType)
 
 
 if __name__ == '__main__':
