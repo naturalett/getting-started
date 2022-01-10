@@ -49,6 +49,3 @@ def get_container_status_by_name(container_name):
 if __name__ == "__main__":
     app.run(host="0.0.0.0")
 
-
-# https://github.com/docker/docker-py
-# https://realpython.com/python-web-applications/
