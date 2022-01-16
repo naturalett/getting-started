@@ -4,6 +4,7 @@ on: [push]
 
 jobs:
   sync:
+    name: sync
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -20,6 +21,8 @@ jobs:
         pip install pytest twine
 
   test:
+    name: test
+    needs: sync
     runs-on: ubuntu-latest
     steps:
     - name: Test with pytest
@@ -32,6 +35,8 @@ jobs:
         files: test-results/**/*.xml
 
   build:
+    name: build
+    needs: test
     runs-on: ubuntu-latest
     steps:
     - name: Build Python Package
@@ -40,6 +45,8 @@ jobs:
         pip install pytest
 
   artifact:
+    name: artifact
+    needs: build
     runs-on: ubuntu-latest
     steps:
     - name: Artifact in PyPi
