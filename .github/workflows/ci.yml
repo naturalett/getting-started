@@ -23,7 +23,12 @@ jobs:
     - name: Test with pytest
       run: |
         python -m pytest python/program-calc/calculate/unit_tests.py
-
+    - name: Publish Unit Test Results
+      uses: EnricoMi/publish-unit-test-result-action@v1
+      if: always()
+      with:
+        files: test-results/**/*.xml
+        
   deployment:
 
     runs-on: ubuntu-latest
