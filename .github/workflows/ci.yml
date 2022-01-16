@@ -15,7 +15,7 @@ jobs:
       with:
         python-version: "3.x"
     - name: Run unittests
-      run: python -m unittest program-calc/calculate/unit_tests.py
+      run: python -m unittest calculate/unit_tests.py
 
   deployment:
 
