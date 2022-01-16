@@ -6,16 +6,24 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
 
     steps:
-    - name: Check out repository code
-      uses: actions/checkout@v1
-    - name: Setup Python
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v2
       with:
-        python-version: "3.x"
-    - name: Run unittests
-      run: python -m unittest calculate/unit_tests.py
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pytest
+        if [ -f requirements.txt ]; then pip install -r requirements
+    - name: Test with pytest
+      run: |
+        python -m pytest calculate/unit_tests.py
 
   deployment:
 
