@@ -1,3 +1,4 @@
+import docker
 from flask import Flask
 from flask import request
 
@@ -6,30 +7,35 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    celsius = request.args.get("celsius", "")
-    if celsius:
-        fahrenheit = fahrenheit_from(celsius)
+    containerName = request.args.get("containerName", "")
+    if containerName:
+        status, name = container_status(containerName)
     else:
-        fahrenheit = ""
+        status, name = "", ""
     return (
             """<form action="" method="get">
-                    Celsius temperature: <input type="text" name="celsius">
-                    <input type="submit" value="Convert to Fahrenheit">
+                    Container Name: <input type="text" name="containerName">
+                    <input type="submit" value="What is my docker status">
                 </form>"""
-            + "Fahrenheit: "
-            + fahrenheit
+            + "Container Status: "
+            + status
+            + "<br><br>Name: "
+            + name
     )
 
 
-def fahrenheit_from(celsius):
-    """Convert Celsius to Fahrenheit degrees."""
+def container_status(containerName):
     try:
-        fahrenheit = float(celsius) * 9 / 5 + 32
-        fahrenheit = round(fahrenheit, 3)  # Round to three decimal places
-        return str(fahrenheit)
-    except ValueError:
-        return "invalid input"
+        client = docker.from_env()
+        container = client.containers.get(containerName)
+        status = container.attrs['State']['Status']
+        name = container.attrs['Name']
+        print(f'container.attrs: {container.attrs}')
+        print(f'Status: {status}')
+        return status, name
+    except(Exception):
+        return "Invalid input", containerName
 
 
 if __name__ == "__main__":
-    app.run(host="127.0.0.1", port=8080, debug=True)
+    app.run(host="0.0.0.0", port=5000, debug=True)
