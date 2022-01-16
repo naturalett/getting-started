@@ -18,7 +18,7 @@ jobs:
 
   test:
     name: test
-    needs: sync
+    needs: initiate
     runs-on: ubuntu-latest
     steps:
     - name: Install dependencies
