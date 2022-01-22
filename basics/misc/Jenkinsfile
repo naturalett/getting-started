@@ -21,7 +21,7 @@ node {
      }
    }
    stage('docker run') {
-     sh label: '', script: '''docker rm docker_test
+     sh label: '', script: '''docker rm docker_test || true
       docker run --rm -tid --name docker_test -p 3000 naturalett/playground:latest
       docker kill docker_test
       
