@@ -7,6 +7,11 @@ python3 unit_tests.py
 ```
 
 `unit_tests.py` imports the calculator that we created and the `unittest` module needed to set up and run the tests.
+In Jenkins Let's install and run the following:
+```
+pip install unittest-xml-reporting==2.4.0
+python python/program-calc/calculate/unit_tests.py
+```
 
 ## Add more unit tests
 You should add more test cases to the `unit_tests.py` file. The general structure is to have a class that takes in the unittest module: `class TestCalculator(unittest.TestCase)`. Then, add functions that test a specific part of the code written in calculator.py
