@@ -2,6 +2,8 @@ import unittest
 import math
 
 # from calculate import calc
+import xmlrunner
+
 import calc
 
 class TestCalculator(unittest.TestCase):
@@ -31,4 +33,8 @@ class PowerTest(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    unittest.main(verbosity=2)
+    with open('results.xml', 'wb') as output:
+        unittest.main(
+            testRunner=xmlrunner.XMLTestRunner(output=output),
+            failfast=False, buffer=False, catchbreak=False)
+    # unittest.main(verbosity=2)
