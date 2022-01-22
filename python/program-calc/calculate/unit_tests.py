@@ -1,7 +1,8 @@
 import unittest
 import math
 
-from calculate import calc
+# from calculate import calc
+import calc
 
 class TestCalculator(unittest.TestCase):
     '''Testing the calculator2'''
