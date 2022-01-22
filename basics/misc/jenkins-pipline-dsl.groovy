@@ -1,6 +1,6 @@
 pipelineJob('DSL_Pipeline') {
 
-  def repo = 'https://github.com/path/to/your/repo.git'
+  def repo = 'https://github.com/naturalett/getting-started.git'
 
   triggers {
     scm('H/5 * * * *')
@@ -12,7 +12,7 @@ pipelineJob('DSL_Pipeline') {
       scm {
         git {
           remote { url(repo) }
-          branches('master', '**/feature*')
+          branches('jenkins-pipeline', '**/feature*')
           scriptPath('misc/jenkinsfile')
           extensions { }  // required as otherwise it may try to tag the repo, which you may not want
         }
