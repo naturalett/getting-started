@@ -12,9 +12,9 @@ job('NodeJS Docker example') {
     
     steps {
         dockerBuildAndPublish {
-            repositoryName('yanivomc/amdocsapp')
+            repositoryName('naturalett/playground')
             tag('${GIT_REVISION,length=9}')
-            registryCredentials('yaniv-dockerhub')
+            registryCredentials('lidor-dockerhub')
             buildContext('./basics/')
             forcePull(false)
             forceTag(false)
