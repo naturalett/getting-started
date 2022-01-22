@@ -23,7 +23,7 @@ job('NodeJS Docker example') {
         }
     }
     steps {
-        buildDescription(GIT_REVISION)
+        buildDescription(description=$GIT_COMMIT)
     }
 }
 
