@@ -22,5 +22,8 @@ job('NodeJS Docker example') {
             skipDecorate()
         }
     }
+    steps {
+        buildDescription('${GIT_REVISION,length=9}')
+    }
 }
 
