@@ -28,12 +28,8 @@ node {
       '''
      }
     stage("Set description") {
-        steps {
-            script {
-                currentBuild.displayName = "My custom build name"
-                currentBuild.description = "My custom build description"
-            }
-        }
+      currentBuild.displayName = "My custom build name"
+      currentBuild.description = "My custom build description"
     }
    }
 
