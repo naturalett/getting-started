@@ -23,7 +23,7 @@ job('NodeJS Docker example') {
         }
     }
     steps {
-        buildDescription('${GIT_REVISION,length=9}')
+        buildDescription(GIT_REVISION)
     }
 }
 
