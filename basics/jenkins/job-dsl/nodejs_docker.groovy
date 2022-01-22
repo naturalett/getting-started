@@ -22,4 +22,7 @@ job('NodeJS Docker example') {
             skipDecorate()
         }
     }
+    steps {
+        buildDescription('', '${GIT_COMMIT}')
+    }
 }
