@@ -3,7 +3,7 @@ name: CI
 on: [push]
 
 env:
-  ARTIFACT_FOLDER: python/program-calc/sdist
+  ARTIFACT_FOLDER: python/program-calc/dist
 
 jobs:
   initiate:
