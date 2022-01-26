@@ -59,8 +59,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Artifact in PyPi
     - uses: actions/download-artifact@master
+    - name: Artifact in PyPi
       with:
         name: my-artifact
         path: $ARTIFACT_FOLDER
