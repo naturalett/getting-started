@@ -3,7 +3,7 @@ name: CI
 on: [push]
 
 env:
-  ARTIFACT_FOLDER: python/program-calc/dist
+  ARTIFACT_FOLDER: python/program-calc/dist/
 
 jobs:
   initiate:
@@ -52,7 +52,7 @@ jobs:
       with:
         name: my-artifact
         path: $ARTIFACT_FOLDER
-    - run: ls -al $ARTIFACT_FOLDER/
+    - run: ls -al $ARTIFACT_FOLDER
 
   artifact:
     name: artifact
