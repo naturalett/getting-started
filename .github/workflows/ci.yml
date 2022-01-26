@@ -38,34 +38,34 @@ jobs:
       with:
         files: test-results/**/*.xml
 
-  build:
-    name: build
-    needs: test
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-    - name: Build Python Package
-    - uses: actions/upload-artifact@master
-      run: |
-        cd python/program-calc
-        python setup.py sdist bdist_wheel
-      with:
-        name: my-artifact
-        path: $ARTIFACT_FOLDER
-
-  # artifact:
-  #   name: artifact
-  #   needs: build
+  # build:
+  #   name: build
+  #   needs: test
   #   runs-on: ubuntu-latest
   #   steps:
   #   - uses: actions/checkout@v2
-  #   - uses: actions/download-artifact@master
-  #   - name: Artifact in PyPi
+  #   - name: Build Python Package
+  #   - uses: actions/upload-artifact@master
+  #     run: |
+  #       cd python/program-calc
+  #       python setup.py sdist bdist_wheel
   #     with:
   #       name: my-artifact
   #       path: $ARTIFACT_FOLDER
-  #     run: |
-  #       pip install twine
-  #       cd python/program-calc
-  #       twine upload dist/*
+
+  artifact:
+    name: artifact
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/download-artifact@master
+    - name: Artifact in PyPi
+      with:
+        name: my-artifact
+        path: $ARTIFACT_FOLDER
+      run: |
+        pip install twine
+        cd python/program-calc
+        twine upload dist/*
 
