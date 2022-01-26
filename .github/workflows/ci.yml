@@ -71,9 +71,12 @@ jobs:
         path: ${{ github.workspace }}
     - name: Print the downloaded artifact
       run: ls -al ${{ github.workspace }}/dist/
-    - name: Upload artifact
+    - name: Upload distribution
+      env:
+        TWINE_USERNAME: __token__
+        TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
+        TWINE_REPOSITORY_URL: https://upload.pypi.org/legacy/
       run: |
         pip install twine
         cd ${{ github.workspace }}
         twine upload dist/*
-
