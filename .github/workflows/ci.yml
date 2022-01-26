@@ -43,7 +43,8 @@ jobs:
     - uses: actions/checkout@v2
     - name: Build Python Package
       run: |
-        python python/program-calc/setup.py sdist bdist_wheel
+        cd python/program-calc
+        python setup.py sdist bdist_wheel
         pip install pytest
 
   artifact:
