@@ -2,8 +2,8 @@ name: CI
 
 on: [push]
 
-env:
-  ARTIFACT_FOLDER: path/to/artifacts
+# env:
+#   ARTIFACT_FOLDER: path/to/artifacts
 
 jobs:
   initiate:
@@ -73,22 +73,22 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2
+    # - name: Checkout
+    #   uses: actions/checkout@v2
     - name: Print dir content
       run: |
         pwd
         ls -al
-        ls -al python/program-calc/
     - name: Retrieve saved artifact
       uses: actions/download-artifact@v2
       with:
         name: my-artifact
         path: ${{ github.workspace }}
+    - run: ls -al ${{ github.workspace }}/
     - run: ls -al ${{ github.workspace }}/dist/
     - name: Upload artifact
       run: |
         pip install twine
-        cd /tmp
-        twine upload *
+        cd ${{ github.workspace }}
+        twine upload dist/*
 
