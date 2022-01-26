@@ -47,17 +47,17 @@ jobs:
       uses: actions/checkout@v2
     - name: Build artifact
       run: |
-        mkdir -p $ARTIFACT_FOLDER
+        mkdir -p path/to/artifacts
         cd python/program-calc    
         python setup.py sdist bdist_wheel
-        ls -al $ARTIFACT_FOLDER
-        cp -R dist/* $ARTIFACT_FOLDER
-        ls -al $ARTIFACT_FOLDER
+        ls -al path/to/artifacts
+        cp -R dist/* path/to/artifacts
+        ls -al path/to/artifacts
     - name: Upload Artifact GitHub Action
       uses: actions/upload-artifact@v2
       with:
         name: my-artifact
-        path: $ARTIFACT_FOLDER
+        path: path/to/artifacts
 
   artifact:
     name: artifact
@@ -68,10 +68,10 @@ jobs:
       uses: actions/download-artifact@v2
       with:
         name: my-artifact
-        path: $ARTIFACT_FOLDER
+        path: path/to/artifacts
     - name: Upload artifact
       run: |
         pip install twine
-        cd $ARTIFACT_FOLDER
+        cd path/to/artifacts
         twine upload *
 
