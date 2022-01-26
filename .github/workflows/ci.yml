@@ -43,10 +43,10 @@ jobs:
     needs: test
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    = run: |
-        cd python/program-calc
-        python setup.py sdist bdist_wheel
+    # - uses: actions/checkout@v2
+    # = run: |
+    #     cd python/program-calc
+    #     python setup.py sdist bdist_wheel
     - uses: actions/upload-artifact@master
       with:
         name: my-artifact
