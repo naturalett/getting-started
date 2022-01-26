@@ -52,18 +52,20 @@ jobs:
         ls -al calculate
         python setup.py sdist bdist_wheel
         ls -al
+        mkdir -p /tmp/
         ls -al dist
         pwd
     - name: Copy artifact
       run: |
         pwd
         cd python/program-calc
+        cp -r dist/* /tmp/
         ls -al dist
     - name: Upload Artifact GitHub Action
       uses: actions/upload-artifact@v2
       with:
         name: my-artifact
-        path: python/program-calc/dist
+        path: /tmp
 
   artifact:
     name: artifact
@@ -77,15 +79,15 @@ jobs:
         pwd
         ls -al
         ls -al python/program-calc/
-        ls -al python/program-calc/dist
+        ls -al /tmp
     - name: Retrieve saved artifact
       uses: actions/download-artifact@v2
       with:
         name: my-artifact
-        path: python/program-calc/dist
+        path: /tmp
     - name: Upload artifact
       run: |
         pip install twine
-        cd python/program-calc/dist
+        cd /tmp
         twine upload *
 
