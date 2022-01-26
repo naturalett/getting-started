@@ -2,7 +2,7 @@ import setuptools, os
 
 setuptools.setup(
     name="example-pkg-naturalett",  # Replace with your own PyPi
-    version="14.8",
+    version=os.environ.get("BUILD_VERSION", "14.8"),
     author="Foo Bar",
     author_email="lidor.ettinger@example.com",
     description="A small example package",
