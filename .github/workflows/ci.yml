@@ -60,6 +60,7 @@ jobs:
         pwd
         ls -al path/to/artifacts
         pwd
+        cd python/program-calc
         cp -R dist/* path/to/artifacts
         ls -al path/to/artifacts
     - name: Upload Artifact GitHub Action
