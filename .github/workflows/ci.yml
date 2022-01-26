@@ -3,7 +3,7 @@ name: CI
 on: [push]
 
 env:
-  ARTIFACT_FOLDER: /path/to/artifacts
+  ARTIFACT_FOLDER: path/to/artifacts
 
 jobs:
   initiate:
@@ -50,7 +50,9 @@ jobs:
         mkdir -p $ARTIFACT_FOLDER
         cd python/program-calc    
         python setup.py sdist bdist_wheel
+        ls -al $ARTIFACT_FOLDER
         cp -R dist/* $ARTIFACT_FOLDER
+        ls -al $ARTIFACT_FOLDER
     - name: Upload Artifact GitHub Action
       uses: actions/upload-artifact@v2
       with:
