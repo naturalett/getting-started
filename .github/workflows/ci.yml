@@ -50,6 +50,8 @@ jobs:
         mkdir -p path/to/artifacts
         cd python/program-calc    
         python setup.py sdist bdist_wheel
+    - name: Copy artifact
+      run: |
         ls -al path/to/artifacts
         cp -R dist/* path/to/artifacts
         ls -al path/to/artifacts
