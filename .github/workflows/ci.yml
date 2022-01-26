@@ -52,9 +52,14 @@ jobs:
         ls -al
         ls -al calculate
         python setup.py sdist bdist_wheel
+        ls -al
+        ls -al dist
+        pwd
     - name: Copy artifact
       run: |
+        pwd
         ls -al path/to/artifacts
+        pwd
         cp -R dist/* path/to/artifacts
         ls -al path/to/artifacts
     - name: Upload Artifact GitHub Action
