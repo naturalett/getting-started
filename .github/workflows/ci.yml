@@ -51,11 +51,10 @@ jobs:
         cd python/program-calc    
         python setup.py sdist bdist_wheel
     - name: Upload Artifact GitHub Action
-      uses: actions/upload-artifact@master
+      uses: actions/upload-artifact@v2
       with:
         name: my-artifact
         path: $ARTIFACT_FOLDER
-    - run: ls -al $ARTIFACT_FOLDER
 
   artifact:
     name: artifact
@@ -65,11 +64,10 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
     - name: Retrieve saved artifact
-      uses: actions/download-artifact@master
+      uses: actions/download-artifact@v2
       with:
         name: my-artifact
         path: $ARTIFACT_FOLDER
-    - run: ls -al $ARTIFACT_FOLDER
     - name: Upload artifact
       run: |
         pip install twine
