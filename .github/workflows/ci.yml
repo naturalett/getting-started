@@ -45,14 +45,13 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
-    - name: Get git sha
-      run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
     - name: Build artifact
       run: |
         cd python/program-calc
         python setup.py sdist bdist_wheel
+        env
       env:
-        BUILD_VERSION: ${{ steps.vars.outputs.sha_short }}
+        BUILD_VERSION: ${GITHUB_SHA::7}
     - name: Backup artifact
       run: |
         mkdir -p ${{ github.workspace }}/dist
