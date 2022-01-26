@@ -2,6 +2,9 @@ name: CI
 
 on: [push]
 
+env:
+  ARTIFACT_FOLDER: python/program-calc/sdist
+
 jobs:
   initiate:
     name: sync
@@ -42,13 +45,13 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build Python Package
+    - uses: actions/upload-artifact@master
       run: |
         cd python/program-calc
         python setup.py sdist bdist_wheel
-    - uses: actions/upload-artifact@master
       with:
         name: my-artifact
-        path: python/program-calc/sdist
+        path: $ARTIFACT_FOLDER
 
   artifact:
     name: artifact
@@ -60,7 +63,7 @@ jobs:
     - uses: actions/download-artifact@master
       with:
         name: my-artifact
-        path: python/program-calc/sdist
+        path: $ARTIFACT_FOLDER
       run: |
         pip install twine
         cd python/program-calc
