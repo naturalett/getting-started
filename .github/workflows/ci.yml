@@ -38,23 +38,23 @@ jobs:
       with:
         files: test-results/**/*.xml
 
-  # build:
-  #   name: build
-  #   needs: test
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #   - uses: actions/checkout@v2
-  #     run: |
-  #       cd python/program-calc
-  #       python setup.py sdist bdist_wheel
-  #   - uses: actions/upload-artifact@master
-  #     with:
-  #       name: my-artifact
-  #       path: $ARTIFACT_FOLDER
+  build:
+    name: build
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - run: cd python/program-calc
+    - run: python setup.py sdist bdist_wheel
+    - uses: actions/upload-artifact@master
+    - name: Store artifact
+      with:
+        name: my-artifact
+        path: $ARTIFACT_FOLDER
 
   artifact:
     name: artifact
-    # needs: build
+    needs: build
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
