@@ -19,42 +19,42 @@ jobs:
       with:
         python-version: ${{ matrix.python-version }}
 
-  # test:
-  #   name: test
-  #   needs: initiate
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #   - uses: actions/checkout@v2
-  #   - name: Install dependencies
-  #     run: |
-  #       python -m pip install --upgrade pip
-  #       pip install pytest
-  #   - name: Test with pytest
-  #     run: |
-  #       python -m pytest python/program-calc/calculate/unit_tests.py --junit-xml test-results/unit_test_results.xml
-  #   - name: Publish Unit Test Results
-  #     uses: EnricoMi/publish-unit-test-result-action@v1
-  #     if: always()
-  #     with:
-  #       files: test-results/**/*.xml
-
-  build:
-    name: build
-    # needs: test
+  test:
+    name: test
+    needs: initiate
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+    - name: Install dependencies
       run: |
-        cd python/program-calc
-        python setup.py sdist bdist_wheel
-    - uses: actions/upload-artifact@master
+        python -m pip install --upgrade pip
+        pip install pytest
+    - name: Test with pytest
+      run: |
+        python -m pytest python/program-calc/calculate/unit_tests.py --junit-xml test-results/unit_test_results.xml
+    - name: Publish Unit Test Results
+      uses: EnricoMi/publish-unit-test-result-action@v1
+      if: always()
       with:
-        name: my-artifact
-        path: $ARTIFACT_FOLDER
+        files: test-results/**/*.xml
+
+  # build:
+  #   name: build
+  #   needs: test
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #   - uses: actions/checkout@v2
+  #     run: |
+  #       cd python/program-calc
+  #       python setup.py sdist bdist_wheel
+  #   - uses: actions/upload-artifact@master
+  #     with:
+  #       name: my-artifact
+  #       path: $ARTIFACT_FOLDER
 
   artifact:
     name: artifact
-    needs: build
+    # needs: build
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
