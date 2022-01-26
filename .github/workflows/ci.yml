@@ -54,21 +54,21 @@ jobs:
         ls -al calculate
         python setup.py sdist bdist_wheel
         ls -al
-        mkdir -p ${{ env.workspace }}/dist
+        mkdir -p ${{ github.workspace }}/dist
         ls -al dist
-        ls -al ${{ env.workspace }}
+        ls -al ${{ github.workspace }}
         pwd
     - name: Copy artifact
       run: |
         pwd
         cd python/program-calc
-        cp -r dist/* ${{ env.workspace }}/dist/
-        ls -al ${{ env.workspace }}/dist/
+        cp -r dist/* ${{ github.workspace }}/dist/
+        ls -al ${{ github.workspace }}/dist/
     - name: Upload Artifact GitHub Action
       uses: actions/upload-artifact@v2
       with:
         name: my-artifact
-        path: ${{ env.workspace }}
+        path: ${{ github.workspace }}
 
   artifact:
     name: artifact
@@ -86,8 +86,8 @@ jobs:
       uses: actions/download-artifact@v2
       with:
         name: my-artifact
-        path: ${{ env.workspace }}
-    - run: ls -al ${{ env.workspace }}/dist/
+        path: ${{ github.workspace }}
+    - run: ls -al ${{ github.workspace }}/dist/
     - name: Upload artifact
       run: |
         pip install twine
