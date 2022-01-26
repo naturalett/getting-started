@@ -47,7 +47,6 @@ jobs:
       uses: actions/checkout@v2
     - name: Build artifact
       run: |
-        mkdir -p path/to/artifacts
         cd python/program-calc
         ls -al
         ls -al calculate
@@ -58,30 +57,34 @@ jobs:
     - name: Copy artifact
       run: |
         pwd
-        ls -al path/to/artifacts
-        pwd
         cd python/program-calc
-        cp -R dist/* path/to/artifacts
-        ls -al path/to/artifacts
+        ls -al dist
     - name: Upload Artifact GitHub Action
       uses: actions/upload-artifact@v2
       with:
         name: my-artifact
-        path: path/to/artifacts
+        path: python/program-calc/dist
 
   artifact:
     name: artifact
     needs: build
     runs-on: ubuntu-latest
     steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+      run: |
+        pwd
+        ls -al
+        ls -al python/program-calc/
+        ls -al python/program-calc/dist
     - name: Retrieve saved artifact
       uses: actions/download-artifact@v2
       with:
         name: my-artifact
-        path: path/to/artifacts
+        path: python/program-calc/dist
     - name: Upload artifact
       run: |
         pip install twine
-        cd path/to/artifacts
+        cd python/program-calc/dist
         twine upload *
 
