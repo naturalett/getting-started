@@ -52,6 +52,7 @@ jobs:
       with:
         name: my-artifact
         path: $ARTIFACT_FOLDER
+    - run: ls -al $ARTIFACT_FOLDER/
 
   artifact:
     name: artifact
