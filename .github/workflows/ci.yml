@@ -2,8 +2,9 @@ name: CI
 
 on: [push]
 
-# env:
-#   ARTIFACT_FOLDER: path/to/artifacts
+env:
+  GIT_PR_SHA: ${{github.event.pull_request.head.sha}}
+  GIT_PR_SHA_SHORT: "${{ env.GIT_PR_SHA:0:10 }}"
 
 jobs:
   initiate:
@@ -51,7 +52,7 @@ jobs:
         python setup.py sdist bdist_wheel
         env
       env:
-        BUILD_VERSION: ${GITHUB_SHA::7}
+        BUILD_VERSION: ${GIT_PR_SHA_SHORT}
     - name: Backup artifact
       run: |
         mkdir -p ${{ github.workspace }}/dist
