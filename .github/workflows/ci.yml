@@ -4,7 +4,6 @@ on: [push]
 
 env:
   GIT_PR_SHA: ${{github.event.pull_request.head.sha}}
-  GIT_PR_SHA_SHORT: "${{ env.GIT_PR_SHA:0:10 }}"
 
 jobs:
   initiate:
@@ -52,7 +51,7 @@ jobs:
         python setup.py sdist bdist_wheel
         env
       env:
-        BUILD_VERSION: ${GIT_PR_SHA_SHORT}
+        BUILD_VERSION: ${GIT_PR_SHA}
     - name: Backup artifact
       run: |
         mkdir -p ${{ github.workspace }}/dist
