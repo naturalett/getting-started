@@ -46,12 +46,11 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
     - name: Set env
-      run: echo "BUILD_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+      run: echo "BUILD_VERSION=${GITHUB_SHA::6} " >> $GITHUB_ENV
     - name: Build artifact
       run: |
         cd python/program-calc
         python setup.py sdist bdist_wheel
-        env
     - name: Backup artifact
       run: |
         mkdir -p ${{ github.workspace }}/dist
