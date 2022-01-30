@@ -47,8 +47,10 @@ jobs:
       uses: actions/checkout@v2
     - name: Set env
       run: echo "BUILD_VERSION=$GITHUB_SHA " >> $GITHUB_ENV
-    - name: Print env
-      run: echo $BUILD_VERSION
+    - name: Set env 2
+      run: echo "LIMINAL_VERSION2=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+    - name: Print env 2
+      run: echo $LIMINAL_VERSION2
     - name: Build artifact
       run: |
         cd python/program-calc
