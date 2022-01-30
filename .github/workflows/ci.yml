@@ -46,15 +46,9 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
     - name: Set env
-      run: echo "BUILD_VERSION=$GITHUB_SHA " >> $GITHUB_ENV
-    - name: Set env 2
-      run: echo "LIMINAL_VERSION2=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
-    - name: Print env 2
-      run: echo $LIMINAL_VERSION2
-    - name: Set env 3
-      run: echo "GIT_TAG=`echo $(git rev-parse --short HEAD)`" >> $GITHUB_ENV
-    - name: Print env 3
-      run: echo $GIT_TAG
+      run: echo "BUILD_VERSION=`echo $(git rev-parse --short HEAD)`" >> $GITHUB_ENV
+    - name: Print env
+      run: echo $BUILD_VERSION
     - name: Build artifact
       run: |
         cd python/program-calc
