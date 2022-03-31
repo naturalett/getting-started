@@ -2,4 +2,4 @@
 
 
 <!-- ### <a name="pookie"></a>www.google.com -->
-<a href="http://example.com/" target="http://example.com/">Hello, world!</a>
+<a href="http://example.com/" target="http://example.com/">Hello</a>
