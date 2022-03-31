@@ -1,2 +1,1 @@
-[My Github](https://github.com/cmatskas" target="_blank)
-
+<a href="http://example.com/" target="_blank">example</a>
