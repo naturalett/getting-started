@@ -1,1 +1,1 @@
-<a href="http://example.com/" target="_blank">example</a>
+[Link](https://example.org/ "title" target="_blank")
