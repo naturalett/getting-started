@@ -10,3 +10,4 @@ For others
 
 
 
+[link text](https://azure.microsoft.com/pricing/details/virtual-machines/)
