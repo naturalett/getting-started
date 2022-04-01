@@ -6,4 +6,7 @@ For others
 
 
 
-<a href="url" target="http://example.com/">link</a>
+<a href="http://example.com/" target="_blank">example</a>
+
+
+
