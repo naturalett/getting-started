@@ -1,20 +1,20 @@
-<!-- Install kops -->
+### Install kops
 ```bash
 brew update && brew install kops
 ```
 
-<!-- Generate a ssh keygen -->
+### Generate a ssh keygen
 ```bash
 ssh-keygen -t rsa
 ```
 
-<!-- Create S3 bucket -->
+### Create S3 bucket
 ```bash
 export BUCKET_NAME=<YOUR_BUCKET_NAME>
 aws s3 mb s3://clusters.${BUCKET_NAME}.tutorial
 ```
 
-<!-- Export parameters -->
+### Export parameters
 ```bash
 export SSH_Public_Key=<path to pub key file>
 export KOPS_STATE_STORE=s3://clusters.${BUCKET_NAME}.tutorial
@@ -25,7 +25,7 @@ export ZONES="us-east-1a"
 export CLUSTER_CIDR="10.31.0.0/16"
 ```
 
-<!-- Create kops cluster -->
+### Create kops cluster
 ```bash
 kops create cluster \
 --name=${KOPS_CLUSTER_NAME} \
@@ -42,22 +42,22 @@ kops create cluster \
 --yes
 ```
 
-<!-- Create Bastion -->
+### Create Bastion
 ```bash
 kops create instancegroup bastions --role Bastion --subnet utility-us-east-1a --name ${KOPS_CLUSTER_NAME}
 ```
 
-<!-- Update Cluster -->
+### Update Cluster
 ```bash
 kops update cluster --name ${KOPS_CLUSTER_NAME} --yes
 ```
 
-<!-- Validate Cluster -->
+### Validate Cluster
 ```bash
 kops validate cluster --name ${KOPS_CLUSTER_NAME}
 ```
 
-<!-- Delete Cluster -->
+### Delete Cluster
 ```bash
 kops delete cluster --name ${KOPS_CLUSTER_NAME} --yes
 ```
