@@ -1,0 +1,8 @@
+nexus:
+    image: sonatype/nexus3:latest
+    ports:
+        - 8081:8081
+        - 8888:8888
+    volumes:
+        - ~/nexus-data-on-host:/nexus-data
+
