@@ -1,4 +1,4 @@
-import requests, json
+import requests, json, re
 from flask import Flask, request, render_template
 
 DOMAIN="http://legit_keycloak_1:8080"
@@ -11,6 +11,8 @@ app = Flask(__name__)
 @app.route('/submit', methods=['POST'])
 def get_post_data():
     user_input = request.form['input_data']
+    if validate_realm_name(user_input):
+        return render_template('result.html', result="Realm names should be dns compatible. i.e. www.example.com")
     url = f"{DOMAIN}/auth/admin/realms"
     YOUR_AUTH_TOKEN=token()
     headers = {
@@ -43,6 +45,14 @@ def token():
     access_token = response.json()['access_token']
     print(access_token)
     return access_token
+
+def validate_realm_name(realm_name):
+    pattern = re.compile(r'^(?!-)[a-zA-Z0-9-]{1,63}(?<!-)$')
+    match = pattern.match(realm_name)
+    if match:
+        return True
+    else:
+        return False
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0')

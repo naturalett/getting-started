@@ -3,15 +3,49 @@
 <head>
   <title>Form Example</title>
   <style>
+    /* Add some CSS styles to improve the look of the page */
+    body {
+        background-color: #f2f2f2;
+        font-family: Arial, sans-serif;
+    }
+    h1 {
+        text-align: center;
+        margin-top: 50px;
+    }
     .form-center {
         width: 50%;
-        margin: 0 auto;
+        margin: 50px auto;
+        border: 2px solid #ccc;
+        padding: 20px;
+        border-radius: 10px;
+    }
+    input[type="text"] {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        box-sizing: border-box;
+        border: 2px solid #ccc;
+        border-radius: 4px;
+    }
+    input[type="submit"] {
+        width: 100%;
+        background-color: #4CAF50;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    input[type="submit"]:hover {
+        background-color: #3e8e41;
     }
   </style>
 </head>
 <body>
+    <h1>Keycloak REST API</h1>
   <form method="POST" action="/submit" class="form-center">
-    <input type="text" name="input_data">
+    <input type="text" name="input_data" placeholder="Enter your input">
     <input type="submit" value="Submit">
   </form>
 </body>
