@@ -1,0 +1,33 @@
+version: '3.9'
+services:
+  web:
+    build: ./web
+    ports:
+      - "5000:5000"
+    networks:
+      workshop-network:
+  keycloak:
+    image: "jboss/keycloak:16.1.1"
+    environment:
+      KEYCLOAK_ADMIN: "admin"
+      KEYCLOAK_ADMIN_PASSWORD: "password"
+    ports:
+    - '8080:8080'
+    volumes:
+      - type: bind
+        source: ./data
+        target: /opt/jboss/keycloak/standalone/data
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 600M
+        reservations:
+          cpus: '1'
+          memory: 600M
+    networks:
+      workshop-network:
+    depends_on:
+    - web
+networks:
+  workshop-network:
