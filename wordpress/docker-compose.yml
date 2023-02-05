@@ -1,0 +1,44 @@
+version: '2'
+services:
+  nginx:
+      image: nginx:latest
+      ports:
+          - '80:80'
+      volumes:
+          - ./nginx:/etc/nginx/conf.d
+          - ./logs/nginx:/var/log/nginx
+          - ./wordpress:/var/www/html
+      links:
+          - wordpress
+      restart: always
+  mysql:
+      image: mariadb
+      ports:
+          - '3306:3306'
+      volumes:
+          - ./db-data:/var/lib/mysql
+      environment:
+          - MYSQL_ROOT_PASSWORD=Strong password
+      restart: always
+  wordpress:
+      image: wordpress:4.7.1-php7.0-fpm
+      ports:
+          - '9000:9000'
+      volumes:
+          - ./wordpress:/var/www/html
+      environment:
+          - WORDPRESS_DB_NAME=wpdb
+          - WORDPRESS_TABLE_PREFIX=wp_
+          - WORDPRESS_DB_HOST=mysql
+          - WORDPRESS_DB_PASSWORD=Strong password
+      links:
+          - mysql
+      restart: always
+
+# https://easyengine.io/tutorials/nginx/amazon-elastic-load-balancer-forward-real-ip/
+# https://davidbeath.com/posts/elb-nginx-proxy-forwarding/
+# https://github.com/awslabs/ecs-nginx-reverse-proxy/blob/master/reverse-proxy/nginx/Dockerfile
+# https://github.com/nginx-proxy/nginx-proxy
+# https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/enable-proxy-protocol.html
+# https://www.google.com/search?q=forward+elb+to+nginx+in+ec2+cotnainer&oq=forward+elb+to+nginx+in+ec2+cotnainer&aqs=chrome..69i57j33i10i160.35634j0j7&sourceid=chrome&ie=UTF-8
+
